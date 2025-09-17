@@ -11,4 +11,5 @@ def palindrome(string: Iterable[int]) -> Iterable[int]:
     return string_new
 
 
+
 print(palindrome([121, 212, 345, 4, 5]))
