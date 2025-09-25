@@ -1,4 +1,4 @@
-def list_unique(mylist):
+def list_unique(mylist: list) -> list:
     """Функция возврящает список уникальных элементов"""
     return list(set(mylist))
 

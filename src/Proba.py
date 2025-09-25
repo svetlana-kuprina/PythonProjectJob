@@ -1,4 +1,4 @@
-def get_below_average(list_n):
+def get_below_average(list_n: list):
     """Функция вывода значений меньше среднего"""
     new_list = []
     sr = sum(list_n) / int(len(list_n))
