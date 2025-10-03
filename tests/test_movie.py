@@ -1,7 +1,7 @@
 import pytest
 
 
-@pytest.mark.parametrize("movie_list1, my_genre1, expected1", [(
+@pytest.mark.parametrize("movie_list1, my_genre1, expected1", [
                                                                     [{"title": "The Shawshank Redemption",
                                                                      "genre": "Drama", "director": "Frank Darabont"},
                                                                     {"title": "The Godfather", "genre": "Crime",
@@ -11,6 +11,6 @@ import pytest
                                                                     "Drama",
                                                                 [{'title': 'The Shawshank Redemption', 'genre': 'Drama',
                                                                   'director': 'Frank Darabont'}]
-)])
+])
 def test_movie(movie_list1, my_genre1, expected1):
     assert (movie_list1, my_genre1) == expected1
