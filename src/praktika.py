@@ -73,10 +73,10 @@ def dek_text(func):
 
     return wrapper
 
-
-@dek_text
-def text(test: str):
-    return test
+if __name__ == '__main__':
+    @dek_text
+    def text(test: str):
+        return test
 
 
 print(text('Привет я хочу много гулляяяяяять очень многоооооого'))
@@ -111,12 +111,13 @@ def dek_period_mark(func):
 
     return wrapper
 
+if __name__ == '__main__':
 
-@dek_period_mark
-@dek_question_mark
-@dek_exclamation_mark
-def exclamation_mark(test: str):
-    return test
+    @dek_period_mark
+    @dek_question_mark
+    @dek_exclamation_mark
+    def exclamation_mark(test: str):
+        return test
 
 
-print(exclamation_mark("Привет. я хочу много гулляяяяяять очень многоооооого! Точно?"))
+    print(exclamation_mark("Привет. я хочу много гулляяяяяять очень многоооооого! Точно?"))
