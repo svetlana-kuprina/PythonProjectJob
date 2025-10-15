@@ -1,5 +1,5 @@
 import time
-from os.path import split
+from functools import wraps
 
 
 def dek_numbers(func):
@@ -19,12 +19,13 @@ def dek_numbers(func):
     return wrapper
 
 
-@dek_numbers
-def number(b):
-    return b
+if __name__ == '__main__':
+    @dek_numbers
+    def number(b):
+        return b
 
 
-print(number([5, 1, 25, 55.55, 6.5]))
+    print(number([5, 1, 25, 55.55, 6.5]))
 
 
 def dek_error(func):
@@ -56,7 +57,7 @@ def dek_yield(func):
     return wrapper
 
 
-def dek_text(func):
+def dek_text_abbreviation(func):
     """Декоратор, который берет результат декорируемой функции (текст) и возвращает текст,
     в котором каждое слово сокращено до 8 символов. Если слово было сокращено, в конце слова ставится точка"""
 
@@ -73,13 +74,13 @@ def dek_text(func):
 
     return wrapper
 
+
 if __name__ == '__main__':
-    @dek_text
-    def text(test: str):
+    @dek_text_abbreviation
+    def text_output(test: str):
         return test
 
-
-print(text('Привет я хочу много гулляяяяяять очень многоооооого'))
+print(text_output('Привет я хочу много гулляяяяяять очень многоооооого'))
 
 
 def dek_exclamation_mark(func):
@@ -111,8 +112,8 @@ def dek_period_mark(func):
 
     return wrapper
 
-if __name__ == '__main__':
 
+if __name__ == '__main__':
     @dek_period_mark
     @dek_question_mark
     @dek_exclamation_mark
@@ -121,3 +122,54 @@ if __name__ == '__main__':
 
 
     print(exclamation_mark("Привет. я хочу много гулляяяяяять очень многоооооого! Точно?"))
+
+
+def dek_numbers_round(precision):
+    """декоратор, который проверяет, что все числа, возвращаемые декорируемой функцией, являются целыми, и округляет их
+     до целых, если это не так. Декоратор принимает параметр, который указывает, до скольких цифр после запятой округлять числа."""
+
+    def wrapper(func):
+        @wraps(func)
+        def inner(*args, **kwargs):
+            function = func(*args, **kwargs)
+            if type(function) == float:
+                return round(function, precision)
+            elif type(function) in (list, tuple):
+                rounded = [round(x, precision) if type(x) == float else x for x in function]
+                return type(function)(rounded)
+            else:
+                return function
+
+        return inner
+
+    return wrapper
+
+
+if __name__ == '__main__':
+    @dek_numbers_round(0)
+    def number(b):
+        return b
+
+
+    print(number((5, 1, 25, 55.55, 6.5)))
+
+
+def dec_error_param(*, retries=3, delay=3):
+    """декоратор, который повторно вызывает декорируемую функцию заданное количество раз через заданное время, если произошла ошибка"""
+
+    def wrapper(func):
+        @wraps(func)
+        def inner(*args, **kwargs):
+            for x in range(retries):
+                try:
+                    function = func(*args, **kwargs)
+                    return function
+                except Exception:
+                    time.sleep(delay)
+                return Exception('Ошибка работы функции')
+
+        return inner
+
+    return wrapper
+
+
