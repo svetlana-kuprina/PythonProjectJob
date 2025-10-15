@@ -173,3 +173,39 @@ def dec_error_param(*, retries=3, delay=3):
     return wrapper
 
 
+def dec_text_abbrev(leng, *, letter='.'):
+    """декоратор, который берет результат декорируемой функции (текст) и возвращает текст, в котором каждое слово
+     сокращено до определенной длины. Если слово было сокращено, в конце слова ставится переданный символ.
+     Количество символов в слове и знак в конце сокращенного слова — параметры декоратора, причем символ обязательно
+     должен передаваться как именованный аргумент."""
+
+    def wrapper(func):
+        @wraps(func)
+        def inner(*args, **kwargs):
+            function = func(*args, **kwargs)
+            function_split = function.split()
+            str_f = ''
+            for item in function_split:
+                if len(item) > leng:
+                    str_f += item[0:leng] + letter + " "
+                else:
+                    str_f += item + ' '
+            return str_f
+
+        return inner
+
+    return wrapper
+
+
+def shorten_words(max_len, *, end_symbol='.'):
+    """то же только через join"""
+
+    def wrapper(func):
+        @wraps(func)
+        def inner(*args, **kwargs):
+            result = func(*args, **kwargs)
+            return " ".join(f"{word[:max_len]}{end_symbol}" if len(word) > max_len else word for word in result.split())
+
+        return inner
+
+    return wrapper
