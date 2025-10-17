@@ -19,13 +19,13 @@ def dek_numbers(func):
     return wrapper
 
 
-if __name__ == '__main__':
-    @dek_numbers
-    def number(b):
-        return b
-
-
-    print(number([5, 1, 25, 55.55, 6.5]))
+# if __name__ == '__main__':
+#     @dek_numbers
+#     def number(b):
+#         return b
+#
+#
+#     print(number([5, 1, 25, 55.55, 6.5]))
 
 
 def dek_error(func):
@@ -75,12 +75,12 @@ def dek_text_abbreviation(func):
     return wrapper
 
 
-if __name__ == '__main__':
-    @dek_text_abbreviation
-    def text_output(test: str):
-        return test
-
-print(text_output('Привет я хочу много гулляяяяяять очень многоооооого'))
+# if __name__ == '__main__':
+#     @dek_text_abbreviation
+#     def text_output(test: str):
+#         return test
+#
+# print(text_output('Привет я хочу много гулляяяяяять очень многоооооого'))
 
 
 def dek_exclamation_mark(func):
@@ -113,15 +113,15 @@ def dek_period_mark(func):
     return wrapper
 
 
-if __name__ == '__main__':
-    @dek_period_mark
-    @dek_question_mark
-    @dek_exclamation_mark
-    def exclamation_mark(test: str):
-        return test
+# if __name__ == '__main__':
+#     @dek_period_mark
+#     @dek_question_mark
+#     @dek_exclamation_mark
+#     def exclamation_mark(test: str):
+#         return test
 
 
-    print(exclamation_mark("Привет. я хочу много гулляяяяяять очень многоооооого! Точно?"))
+    # print(exclamation_mark("Привет. я хочу много гулляяяяяять очень многоооооого! Точно?"))
 
 
 def dek_numbers_round(precision):
@@ -145,13 +145,13 @@ def dek_numbers_round(precision):
     return wrapper
 
 
-if __name__ == '__main__':
-    @dek_numbers_round(0)
-    def number(b):
-        return b
-
-
-    print(number((5, 1, 25, 55.55, 6.5)))
+# if __name__ == '__main__':
+#     @dek_numbers_round(0)
+#     def number(b):
+#         return b
+#
+#
+#     print(number((5, 1, 25, 55.55, 6.5)))
 
 
 def dec_error_param(*, retries=3, delay=3):
