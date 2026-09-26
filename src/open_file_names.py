@@ -43,4 +43,3 @@ def get_en_ru(list_names_cl: list) -> tuple[list[Any], list[Any]]:
         ru_str = "\n".join(ru)
         file.write(ru_str)
     return en, ru
-

@@ -8,13 +8,18 @@ def test_shorten_words():
     def words(text):
         return text
 
-    assert words(
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.") == "Lorem ipsum dolor sit amet, consecte. adipisci. elit."
+    assert (
+        words("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
+        == "Lorem ipsum dolor sit amet, consecte. adipisci. elit."
+    )
+
 
 def test_shorten_words2():
-    @shorten_words(10,end_symbol='?')
+    @shorten_words(10, end_symbol="?")
     def words(text):
         return text
 
-    assert words(
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.") == "Lorem ipsum dolor sit amet, consectetu? adipiscing elit."
+    assert (
+        words("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
+        == "Lorem ipsum dolor sit amet, consectetu? adipiscing elit."
+    )

@@ -121,7 +121,7 @@ def dek_period_mark(func):
 #         return test
 
 
-# print(exclamation_mark("Привет. я хочу много гулляяяяяять очень многоооооого! Точно?"))
+    # print(exclamation_mark("Привет. я хочу много гулляяяяяять очень многоооооого! Точно?"))
 
 
 def dek_numbers_round(precision):
@@ -205,36 +205,6 @@ def shorten_words(max_len, *, end_symbol='.'):
         def inner(*args, **kwargs):
             result = func(*args, **kwargs)
             return " ".join(f"{word[:max_len]}{end_symbol}" if len(word) > max_len else word for word in result.split())
-
-        return inner
-
-    return wrapper
-
-
-def positive_integers():
-    """Проверяет значение функции меньше нуля то ошибка"""
-
-    def wrapper(func):
-        def inner(*args):
-            for arg in args:
-                if arg < 0:
-                    raise ValueError('All arguments must be positive integers')
-            return func(*args)
-
-        return inner
-
-    return wrapper
-
-
-def is_palindrome():
-    """проверяет, что аргумент функции (текст) является палиндромом"""
-
-    def wrapper(func):
-        def inner(text):
-            if text.lower() == text[::-1].lower():
-                return func(text)
-            else:
-                raise ValueError('Argument must be a palindrome')
 
         return inner
 
